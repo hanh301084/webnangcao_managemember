@@ -9,15 +9,15 @@ export default class Register extends Component {
       last_name: this.lastName,
       email: this.email,
       password: this.password,
-      password_confirm: this.confirmPassword
-    };
+      password_confirm: this.confirmPassword,
+    }
     axios
       .post('/register', data)
       .then((res) => {
-        console.log(res);
+        console.log(res)
       })
       .catch((err) => {
-        console.log(err);
+        console.log(err)
       })
   }
 
@@ -25,8 +25,7 @@ export default class Register extends Component {
     return (
       <form onSubmit={this.handleSubmit}>
         <h3>Sign Up</h3>
-
-        <div className="form-group">
+        <div className="mb-3">
           <label>First name</label>
           <input
             type="text"
@@ -35,7 +34,7 @@ export default class Register extends Component {
             onChange={(e) => (this.firstName = e.target.value)}
           />
         </div>
-        <div className="form-group">
+        <div className="mb-3">
           <label>Last name</label>
           <input
             type="text"
@@ -44,7 +43,7 @@ export default class Register extends Component {
             onChange={(e) => (this.lastName = e.target.value)}
           />
         </div>
-        <div className="form-group">
+        <div className="mb-3">
           <label>Email</label>
           <input
             type="email"
@@ -53,7 +52,7 @@ export default class Register extends Component {
             onChange={(e) => (this.email = e.target.value)}
           />
         </div>
-        <div className="form-group">
+        <div className="mb-3">
           <label>Password</label>
           <input
             type="password"
@@ -62,7 +61,7 @@ export default class Register extends Component {
             onChange={(e) => (this.password = e.target.value)}
           />
         </div>
-        <div className="form-group">
+        <div className="mb-3">
           <label>Confirm Password</label>
           <input
             type="password"
@@ -71,8 +70,14 @@ export default class Register extends Component {
             onChange={(e) => (this.confirmPassword = e.target.value)}
           />
         </div>
-
-        <button className="btn btn-primary btn-block">Sign Up</button>
+        <div className="d-grid">
+          <button type="submit" className="btn btn-primary">
+            Sign Up
+          </button>
+        </div>
+        <p className="forgot-password text-right">
+          Already registered <a href="/sign-in">sign in?</a>
+        </p>
       </form>
     )
   }

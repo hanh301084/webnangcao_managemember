@@ -36,12 +36,14 @@ export default class Nav extends Component {
     }
 
     return (
-      <nav className="navbar navbar-expand navbar-light fixed-top">
+      <nav className="navbar navbar-expand-lg navbar-light fixed-top">
         <div className="container">
           <Link className="navbar-brand" to={'/'}>
             Home
           </Link>
-          <div className="collapse navbar-collapse">{buttons}</div>
+          <div className="collapse navbar-collapse" id="navbarTogglerDemo02">
+            {buttons}
+          </div>
         </div>
       </nav>
     )

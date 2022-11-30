@@ -1,4 +1,4 @@
-import React, { Component } from 'react'
+import React, { Component, useState } from 'react'
 import '../node_modules/bootstrap/dist/css/bootstrap.min.css'
 import './App.css'
 import { BrowserRouter, Route, Switch } from 'react-router-dom'
@@ -10,21 +10,24 @@ import Login from './component/login.component'
 import Register from './component/register.component'
 import UserDetails from './component/userDetails'
 
-
 export default class App extends Component {
   state = {}
   componentDidMount = () => {
     axios.get('user').then(
       (res) => {
-        this.setState({
-          user: res.data,
-        })
+        this.setUser(res.data);
       },
       (err) => {
         console.log(err)
       },
     )
   }
+
+  setUser=(user)=>{
+    this.setState({
+          user: user,
+        });
+  };
 
   render() {
     return (
@@ -35,9 +38,9 @@ export default class App extends Component {
             <div className="auth-inner">
               <Switch>
                 <Route exact path="/" component={()=><Home user={this.state.user}/>} />
-                <Route exact path="/login" component={Login} />
+                <Route exact path="/login" component={()=><Login setUser={this.setUser}/>} />
                 <Route exact path="/register" component={Register} />
-               <Route exact path="/userDetails" component={UserDetails} />
+                <Route exact path="/userDetails" component={UserDetails} />
 
               </Switch>
             </div>

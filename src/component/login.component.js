@@ -1,8 +1,7 @@
 import axios from 'axios'
 import React, { Component } from 'react'
-
 export default class Login extends Component {
-  state = {}
+
   handleSubmit = (e) => {
     e.preventDefault()
     const data = {
@@ -12,7 +11,15 @@ export default class Login extends Component {
     axios
       .post('/login', data)
       .then((res) => {
-        localStorage.setItem('token', res.data.token)
+        //localStorage.setItem('token', res.token);
+        //localStorage.setItem('user', res.user)
+ 
+        if(res.status === 201){          
+          console.log(this.props);
+          this.setState({user: res.user});
+          console.log(this.props);
+          //window.location.replace('/');
+        }
       })
       .catch((err) => {
         console.log(err)
@@ -50,3 +57,5 @@ export default class Login extends Component {
     )
   }
 }
+
+
